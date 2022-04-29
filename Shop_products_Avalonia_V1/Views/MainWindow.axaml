@@ -31,10 +31,10 @@
 		</Grid.ColumnDefinitions>
 
 		
-		<TextBox Text="" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-		<TextBox Text="" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-		<TextBox Text="" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-		<Button Content="Записать" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding Query_Con}"/>
+		<TextBox Text="{Binding Products}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+		<TextBox Text="{Binding Date}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+		<TextBox Text="{Binding Price}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+		<Button Content="Записать" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding Query_Con}" />
 	</Grid>
 </Window>
 

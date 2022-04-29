@@ -11,13 +11,11 @@ namespace Shop_products_Avalonia_V1.ViewModels
         public int _price = 0;
         public string _products = "";
         Query query = new Query();
-        public void Read()
-        {
-            Products = "Продукт";
-            Date = "Дата";
-            Price = 123;
+        
+       /* Products = "Продукт";
+        Date = "Дата";
+        Price = 123;*/
 
-        }
         public void Query_Con()
         {
             query.Question_write_main(Products, Date, Price);
