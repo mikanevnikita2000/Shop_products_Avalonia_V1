@@ -35,6 +35,26 @@
 		<TextBox Text="{Binding Date}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
 		<TextBox Text="{Binding Price}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
 		<Button Content="Записать" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding Query_Con}" />
+		
+	    <ListBox Items="{Binding MyItems}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border Background="Red" CornerRadius="4" Padding="4">
+						<TextBlock Text="{Binding}"/>
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<ListBox Items="{Binding Items}">
+			<ListBox.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Width" Value="400"/>
+					<Setter Property="Height" Value="68"/>
+					<Setter Property="HorizontalAlignment" Value="Center"/>
+				</Style>
+			</ListBox.Styles>
+		</ListBox>
+	
 	</Grid>
 </Window>
 
