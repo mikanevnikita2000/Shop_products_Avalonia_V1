@@ -38,6 +38,11 @@ namespace Shop_products_Avalonia_V1.ViewModels
             get => _products;
             set => this.RaiseAndSetIfChanged(ref _products, value);
         }
+        public var Items
+        {
+            get => _date;
+            set => this.RaiseAndSetIfChanged(ref _date, value);
+        }
     }
 }
 /*Console.WriteLine("¬ведите продукт:");
