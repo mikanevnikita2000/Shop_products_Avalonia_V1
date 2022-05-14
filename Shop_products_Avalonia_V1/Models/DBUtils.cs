@@ -1,22 +1,21 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
+using Microsoft.Data.Sqlite;
 
 namespace Tutorial.SqlConn
 {
     class DBUtils
     {
-        public static MySqlConnection GetDBConnection()
+        public static void SQLite_Conn ()
         {
-            string host = "localhost";
-            int port = 3306;
-            string database = "shop";
-            string username = "root";
-            string password = "12341234";
-
-            return GetDBConnection(host, port, database, username, password);
+            using (var connection = new SqliteConnection("Data Source=shop.db"))
+            {
+                connection.Open();
+            }
+            Console.Read();
         }
 
-        public static MySqlConnection
+        /*public static MySqlConnection
          GetDBConnection(string host, int port, string database, string username, string password)
         {
             // Connection String.
@@ -26,7 +25,7 @@ namespace Tutorial.SqlConn
             MySqlConnection conn = new MySqlConnection(connString);
 
             return conn;
-        }
+        }*/
 
     }
 }
