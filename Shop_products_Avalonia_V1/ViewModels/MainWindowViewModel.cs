@@ -1,24 +1,27 @@
 using System;
-using Avalonia.Media;
+using System.Collections.Generic;
 using ReactiveUI;
 
 namespace Shop_products_Avalonia_V1.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public string Greeting => "Welcome to Avalonia!";
         public string _date = "";
         public int _price = 0;
         public string _products = "";
         Query query = new Query();
-        
-       /* Products = "Продукт";
-        Date = "Дата";
-        Price = 123;*/
+        public string _record1 = "";
+        public string _record2 = "";
+        public string _record3 = "";
+        public string _record4 = "";
+        public string _record5 = "";
+
 
         public void Query_Con()
         {
             query.Question_write_main(Products, Date, Price);
+            List<string> records = new List<string>(4);
+            (Record1, Record2, Record3, Record4) =query.Question_read_String_products(records);
         }
 
 
@@ -38,17 +41,26 @@ namespace Shop_products_Avalonia_V1.ViewModels
             get => _products;
             set => this.RaiseAndSetIfChanged(ref _products, value);
         }
-        /*public var Items
+        public string Record1
         {
-            get => _date;
-            set => this.RaiseAndSetIfChanged(ref _date, value);
-        }*/
+            get => _record1;
+            set => this.RaiseAndSetIfChanged(ref _record1, value);
+        }
+        public string Record2
+        {
+            get => _record2;
+            set => this.RaiseAndSetIfChanged(ref _record2, value);
+        }
+        public string Record3
+        {
+            get => _record3;
+            set => this.RaiseAndSetIfChanged(ref _record3, value);
+        }
+        public string Record4
+        {
+            get => _record4;
+            set => this.RaiseAndSetIfChanged(ref _record4, value);
+        }
+
     }
 }
-/*Console.WriteLine("Введите продукт:");
-            string products = Convert.ToString(Console.ReadLine());
-        Console.WriteLine("Введите дату:");
-            string date = Convert.ToString(Console.ReadLine());
-        Console.WriteLine("Введите цену:");
-            int price = Convert.ToInt32(Console.ReadLine());
-        query.Question_write_main(products, date, price);*/
