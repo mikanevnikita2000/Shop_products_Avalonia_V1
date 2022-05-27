@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using ReactiveUI;
 
@@ -19,11 +18,16 @@ namespace Shop_products_Avalonia_V1.ViewModels
 
         public void Query_Con()
         {
-            query.Question_write_main(Products, Date, Price);
             List<string> records = new List<string>(4);
-            (Record1, Record2, Record3, Record4) =query.Question_read_String_products(records);
+            (Record1, Record2, Record3, Record4) = query.Question_read_String_products(records);
+            query.Question_write_main(Products, Date, Price);
+           
         }
-
+        Shop_products_Avalonia_V1.Views.statistics statistics = new Views.statistics();
+        public void Two_window()
+        {
+            statistics.Show();
+        }
 
 
         public string Date

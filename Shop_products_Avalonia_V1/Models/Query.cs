@@ -25,7 +25,7 @@ namespace Shop_products_Avalonia_V1
         {
             int idproducts = 0;
             
-            List<string> records = new List<string>();
+            List<string> records = new List<string>(5);
             using (var connection = new SqliteConnection("Data Source=shop.db"))
             {
                 connection.Open();
@@ -45,13 +45,14 @@ namespace Shop_products_Avalonia_V1
                         }
                         if (question == "SELECT * FROM main ORDER BY idmain DESC LIMIT 4;")
                         {
-                            int i = 0;
+                            int i = 1;
                             while (reader.Read())
                             {
                                 string data = Convert.ToString(reader["data"]);
                                 int products = Convert.ToInt32(reader["products"]);
                                 int price = Convert.ToInt32(reader["price"]);
                                 string category = Convert.ToString(reader["category"]);
+                                records[1] = "gfgf";
                                 records[i] = $"{data} : {products} : {price} : {category}";
                                 //2022-05-19
                                 i = i + 1;
