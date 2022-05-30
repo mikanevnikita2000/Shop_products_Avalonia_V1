@@ -14,7 +14,7 @@
 		Padding="4">
 	
 	<Design.DataContext>
-		<vm:fuk/>
+		<vm:MainWindowViewModel/>
 	</Design.DataContext>
 
 	<Grid>
