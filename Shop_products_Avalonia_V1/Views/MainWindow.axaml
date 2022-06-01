@@ -3,7 +3,7 @@
         xmlns:vm="using:Shop_products_Avalonia_V1.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="550"
         x:Class="Shop_products_Avalonia_V1.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="Shop_products_Avalonia_V1"
@@ -18,37 +18,34 @@
     </Design.DataContext>
 	
 	<Window.Styles>
-		
-	</Window.Styles>
+		</Window.Styles>
 
 	<Grid>
-		 <Grid.ColumnDefinitions>
-			 <ColumnDefinition Width="1*"/>
-			 <ColumnDefinition Width="1*"/>
-		 </Grid.ColumnDefinitions>
 		
 		<TabControl>
 			<TabItem>
 				<TabItem.Header>
-					<TextBlock VerticalAlignment="Center">Triangle</TextBlock>
+					<TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" >Запись</TextBlock>
 				</TabItem.Header>
-				<StackPanel>
-					<TextBox Text="{Binding Products}" Width="20" Height="10" Grid.Row="0" Grid.ColumnSpan="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<TextBox Text="{Binding Date}" Width="20" Height="10"  Grid.ColumnSpan="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<TextBox Text="{Binding Price}" Width="20" Height="10"  Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<Button Content="Записать"  HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding Query_Con}" />
-					<TextBlock Text="{Binding Record1}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<TextBlock Text="{Binding Record2}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<TextBlock Text="{Binding Record3}"  HorizontalAlignment="Center" VerticalAlignment="Center" />
-					<TextBlock Text="{Binding Record4}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-				</StackPanel>
+				<DockPanel LastChildFill="True">
+					<Grid ColumnDefinitions="1*,1*" RowDefinitions="1*,1*,1*,1*,1*,1*,1*"  Margin="4">
+						<TextBox Text="{Binding Products}" Margin="20" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+						<TextBox Text="{Binding Date}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+						<TextBox Text="{Binding Price}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+						<Button Content="Записать"  Grid.Row="2" Margin="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding Query_Con}" />
+						<TextBox Text="{Binding Record1}" Grid.Row="3" FontSize="14" Margin="20" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+						<TextBox Text="{Binding Record2}" Grid.Row="4" FontSize="14" Margin="20" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+						<TextBox Text="{Binding Record3}" Grid.Row="5" FontSize="14" Margin="20" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+						<TextBox Text="{Binding Record4}" Grid.Row="6" FontSize="14" Margin="20" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+					</Grid>
+				</DockPanel>
 			</TabItem>
 			<TabItem>
 				<TabItem.Header>
-							<TextBlock VerticalAlignment="Center">2 окно</TextBlock>
+							<TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" >2 окно</TextBlock>
 				</TabItem.Header>
 				<StackPanel>
-					<Button Content="2 окно"  HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding Two_window}" />
+					<Button Content="Статистика" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding Two_window}" />
 				</StackPanel>
 			</TabItem>
 		</TabControl>
