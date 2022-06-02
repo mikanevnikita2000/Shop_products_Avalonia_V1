@@ -20,8 +20,7 @@ namespace Shop_products_Avalonia_V1.ViewModels
         {
             List<string> records = new List<string>(4);
             query.Question_write_main(Products, Date, Price);
-            //(Record1, Record2, Record3, Record4) = query.Question_read_String_products(records);
-           
+            (Record1, Record2, Record3, Record4) = query.Question_read_String_products(records);
         }
         Shop_products_Avalonia_V1.Views.statistics statistics = new Views.statistics();
         public void Two_window()

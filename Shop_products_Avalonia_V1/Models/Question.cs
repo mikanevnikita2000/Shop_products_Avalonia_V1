@@ -21,10 +21,11 @@ namespace Shop_products_Avalonia_V1
                 Console.WriteLine($"В таблицу Users добавлено объектов: {number}");
             }
         }
-        public (int, List<string>) Question_read(string question)
+
+        public (int, string, List<string>) Question_read(string question)
         {
             int idproducts = 0;
-            
+            string product ="";
             List<string> records = new List<string>(5);
             using (var connection = new SqliteConnection("Data Source=shop.db"))
             {
@@ -41,35 +42,35 @@ namespace Shop_products_Avalonia_V1
                             {
                                 idproducts = Convert.ToInt32(reader["id_products"]);
                             }
-                            return (idproducts, records);
+                            return (idproducts, product, records);
                         }
                         if (question == "SELECT * FROM main ORDER BY idmain DESC LIMIT 4;")
                         {
-                            int i = 1;
+                            List<string> record = new List<string>(5);
                             while (reader.Read())
                             {
                                 string data = Convert.ToString(reader["data"]);
-                                int products = Convert.ToInt32(reader["products"]);
+                                int id_products = Convert.ToInt32(reader["products"]);
                                 int price = Convert.ToInt32(reader["price"]);
+                                question = $"SELECT * FROM products WHERE id_products = {id_products};";
+                                (idproducts, product, record) = Question_read(question);
                                 string category = Convert.ToString(reader["category"]);
-                                records[1] = "gfgf";
-                                records[i] = $"{data} : {products} : {price} : {category}";
-                                //2022-05-19
-                                i = i + 1;
+                                records.Add ($"{data} : {product} : {price} : {category}");
                             }
-                            return (idproducts, records);
+                            return (idproducts, product, records);
                         }
 
                         while (reader.Read())
                         {
+                            product = Convert.ToString(reader["products"]);
                             idproducts = Convert.ToInt32(reader["id_products"]);
                         }
-                        return (idproducts, records);
+                        return (idproducts, product, records);
 
                     }
                 }
             }
-            return (idproducts, records);
+            return (idproducts, product, records);
         }
 
 
@@ -78,12 +79,13 @@ namespace Shop_products_Avalonia_V1
         {
             string question = $"SELECT * FROM products WHERE products ='{products}';";
             int idproducts=0;
-            (idproducts, records) = Question_read(question);
+            string product = "";
+            (idproducts, product, records) = Question_read(question);
             if (idproducts == 0)
             {
                 Question_write_idproduct_products(products);
                 question = "SELECT id_products FROM products;";
-                (idproducts, records) = Question_read(question);
+                (idproducts, product, records) = Question_read(question);
             }
             return idproducts;
         }
@@ -92,11 +94,12 @@ namespace Shop_products_Avalonia_V1
         {
             string question = "SELECT * FROM main ORDER BY idmain DESC LIMIT 4;";
             int idproducts = 0;
-            (idproducts, records) = Question_read(question);
-            string record1 = records[1];
-            string record2 = records[2];
-            string record3 = records[3];
-            string record4 = records[4];
+            string product = "";
+            (idproducts, product, records) = Question_read(question);
+            string record1 = records[0];
+            string record2 = records[1];
+            string record3 = records[2];
+            string record4 = records[3];
             return (record1, record2, record3, record4);
         }
 
