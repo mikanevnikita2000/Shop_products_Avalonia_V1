@@ -4,7 +4,7 @@ using Microsoft.Data.Sqlite;
 
 namespace Shop_products_Avalonia_V1
 {
-    internal class Query
+    internal class Question
     {
         public void Question_Write(string question)
         {

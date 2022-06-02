@@ -5,10 +5,10 @@ namespace Shop_products_Avalonia_V1.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public string _date = "";
+        public string _date = "Дата";
         public int _price = 0;
-        public string _products = "";
-        Query query = new Query();
+        public string _products = "Продукт";
+        Question query = new Question();
         public string _record1 = "";
         public string _record2 = "";
         public string _record3 = "";
@@ -16,11 +16,11 @@ namespace Shop_products_Avalonia_V1.ViewModels
         public string _record5 = "";
 
 
-        public void Query_Con()
+        public void Question_Con()
         {
             List<string> records = new List<string>(4);
-            (Record1, Record2, Record3, Record4) = query.Question_read_String_products(records);
             query.Question_write_main(Products, Date, Price);
+            //(Record1, Record2, Record3, Record4) = query.Question_read_String_products(records);
            
         }
         Shop_products_Avalonia_V1.Views.statistics statistics = new Views.statistics();
