@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ReactiveUI;
 
@@ -5,10 +6,11 @@ namespace Shop_products_Avalonia_V1.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public string _date = "Дата";
+       
+        public string _date ="";
         public int _price = 0;
         public string _products = "Продукт";
-        Question query = new Question();
+        Requests requests = new Requests();
         public string _record1 = "";
         public string _record2 = "";
         public string _record3 = "";
@@ -19,15 +21,10 @@ namespace Shop_products_Avalonia_V1.ViewModels
         public void Question_Con()
         {
             List<string> records = new List<string>(4);
-            query.Question_write_main(Products, Date, Price);
-            (Record1, Record2, Record3, Record4) = query.Question_read_String_products(records);
+            requests.Question_write_main(Products, Date, Price);
+            (Record1, Record2, Record3, Record4) = requests.Question_read_String_products(records);
         }
-        Shop_products_Avalonia_V1.Views.statistics statistics = new Views.statistics();
-        public void Two_window()
-        {
-            statistics.Show();
-        }
-
+        
 
         public string Date
         {
@@ -64,6 +61,5 @@ namespace Shop_products_Avalonia_V1.ViewModels
             get => _record4;
             set => this.RaiseAndSetIfChanged(ref _record4, value);
         }
-
     }
 }

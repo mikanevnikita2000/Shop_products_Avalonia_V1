@@ -4,7 +4,7 @@ using Microsoft.Data.Sqlite;
 
 namespace Shop_products_Avalonia_V1
 {
-    internal class Question
+    internal class Requests
     {
         public void Question_Write(string question)
         {
@@ -15,10 +15,7 @@ namespace Shop_products_Avalonia_V1
                 command.Connection = connection;
 
                 command.CommandText = $"{question}";
-                Console.WriteLine("В таблицу отправлен запрос");
                 int number = command.ExecuteNonQuery();
-
-                Console.WriteLine($"В таблицу Users добавлено объектов: {number}");
             }
         }
 
@@ -36,7 +33,7 @@ namespace Shop_products_Avalonia_V1
                 {
                     if (reader.HasRows)
                     {
-                        if (question == "SELECT id_products FROM products;")
+                        if (question == "SELECT id_products FROM type_products;")
                         {
                             while (reader.Read())
                             {
@@ -44,7 +41,7 @@ namespace Shop_products_Avalonia_V1
                             }
                             return (idproducts, product, records);
                         }
-                        if (question == "SELECT * FROM main ORDER BY idmain DESC LIMIT 4;")
+                        if (question == "SELECT * FROM purchase_information ORDER BY idmain DESC LIMIT 4;")
                         {
                             List<string> record = new List<string>(5);
                             while (reader.Read())
@@ -52,7 +49,7 @@ namespace Shop_products_Avalonia_V1
                                 string data = Convert.ToString(reader["data"]);
                                 int id_products = Convert.ToInt32(reader["products"]);
                                 int price = Convert.ToInt32(reader["price"]);
-                                question = $"SELECT * FROM products WHERE id_products = {id_products};";
+                                question = $"SELECT * FROM type_products WHERE id_products = {id_products};";
                                 (idproducts, product, record) = Question_read(question);
                                 string category = Convert.ToString(reader["category"]);
                                 records.Add ($"{data} : {product} : {price} : {category}");
@@ -77,14 +74,14 @@ namespace Shop_products_Avalonia_V1
 
         public int Question_read_product_products(string products,List<string> records)
         {
-            string question = $"SELECT * FROM products WHERE products ='{products}';";
+            string question = $"SELECT * FROM type_products WHERE products ='{products}';";
             int idproducts=0;
             string product = "";
             (idproducts, product, records) = Question_read(question);
             if (idproducts == 0)
             {
                 Question_write_idproduct_products(products);
-                question = "SELECT id_products FROM products;";
+                question = "SELECT id_products FROM type_products;";
                 (idproducts, product, records) = Question_read(question);
             }
             return idproducts;
@@ -92,7 +89,7 @@ namespace Shop_products_Avalonia_V1
 
         public (string, string, string, string) Question_read_String_products(List<string> records)
         {
-            string question = "SELECT * FROM main ORDER BY idmain DESC LIMIT 4;";
+            string question = "SELECT * FROM purchase_information ORDER BY idmain DESC LIMIT 4;";
             int idproducts = 0;
             string product = "";
             (idproducts, product, records) = Question_read(question);
@@ -107,7 +104,7 @@ namespace Shop_products_Avalonia_V1
 
         public void Question_write_idproduct_products(string products)
         {
-            string question = $"INSERT INTO products (products) VALUES('{products}');";
+            string question = $"INSERT INTO type_products (products) VALUES('{products}');";
             Question_Write(question);
         }
 
@@ -115,7 +112,7 @@ namespace Shop_products_Avalonia_V1
         {
             List<string> records = new List<string>(5);
             int idproduct = Question_read_product_products(products, records);
-            string question = $"INSERT INTO main (data, products,price,category) VALUES('{data}', {idproduct} ,{price},'продукт');";
+            string question = $"INSERT INTO purchase_information (data, products,price,category) VALUES('{data}', {idproduct} ,{price},'продукт');";
             Question_Write(question);
         }
     }
