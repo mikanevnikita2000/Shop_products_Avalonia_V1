@@ -7,34 +7,36 @@ namespace Shop_products_Avalonia_V1.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
        
-        public string _date ="";
-        public int _price = 0;
+        public string _datePurchases = "";
+        public int _pricePurchases = 0;
         public string _products = "Продукт";
         Requests requests = new Requests();
         public string _record1 = "";
         public string _record2 = "";
         public string _record3 = "";
         public string _record4 = "";
-        public string _record5 = "";
 
 
-        public void Question_Con()
+        public void Record()
         {
             List<string> records = new List<string>(4);
-            requests.Question_write_main(Products, Date, Price);
-            (Record1, Record2, Record3, Record4) = requests.Question_read_String_products(records);
+            if (DatePurchases != "")
+            {
+                requests.Question_write_main(Products, DatePurchases, PricePurchases);
+            }
+            (Record1, Record2, Record3, Record4) = requests.Read_String_products(records);
         }
         
 
-        public string Date
+        public string DatePurchases
         {
-            get => _date;
-            set => this.RaiseAndSetIfChanged(ref _date, value);
+            get => _datePurchases;
+            set => this.RaiseAndSetIfChanged(ref _datePurchases, value);
         }
-        public int Price
+        public int PricePurchases
         {
-            get => _price;
-            set => this.RaiseAndSetIfChanged(ref _price, value);
+            get => _pricePurchases;
+            set => this.RaiseAndSetIfChanged(ref _pricePurchases, value);
         }
         public string Products
         {

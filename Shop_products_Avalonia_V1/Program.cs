@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.ReactiveUI;
 using System;
+using Shop_products_Avalonia_V1.ViewModels;
 
 namespace Shop_products_Avalonia_V1
 {
@@ -11,8 +12,13 @@ namespace Shop_products_Avalonia_V1
         // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
         // yet and stuff might break.
         [STAThread]
-        public static void Main(string[] args) => BuildAvaloniaApp()
-            .StartWithClassicDesktopLifetime(args);
+        public static void Main(string[] args) 
+        {
+            MainWindowViewModel window1 = new MainWindowViewModel();
+            window1.Record();
+            BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+            
+        }
 
         // Avalonia configuration, don't remove; also used by visual designer.
         public static AppBuilder BuildAvaloniaApp()

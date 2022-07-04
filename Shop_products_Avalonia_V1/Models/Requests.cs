@@ -46,13 +46,13 @@ namespace Shop_products_Avalonia_V1
                             List<string> record = new List<string>(5);
                             while (reader.Read())
                             {
-                                string data = Convert.ToString(reader["data"]);
+                                string dataPurchases = Convert.ToString(reader["data"]);
                                 int id_products = Convert.ToInt32(reader["products"]);
-                                int price = Convert.ToInt32(reader["price"]);
+                                int pricePurchases = Convert.ToInt32(reader["price"]);
                                 question = $"SELECT * FROM type_products WHERE id_products = {id_products};";
                                 (idproducts, product, record) = Question_read(question);
                                 string category = Convert.ToString(reader["category"]);
-                                records.Add ($"{data} : {product} : {price} : {category}");
+                                records.Add ($"{dataPurchases} : {product} : {pricePurchases} : {category}");
                             }
                             return (idproducts, product, records);
                         }
@@ -72,7 +72,7 @@ namespace Shop_products_Avalonia_V1
 
 
 
-        public int Question_read_product_products(string products,List<string> records)
+        public int Read_product(string products,List<string> records)
         {
             string question = $"SELECT * FROM type_products WHERE products ='{products}';";
             int idproducts=0;
@@ -80,14 +80,14 @@ namespace Shop_products_Avalonia_V1
             (idproducts, product, records) = Question_read(question);
             if (idproducts == 0)
             {
-                Question_write_idproduct_products(products);
+                Write_idproduct(products);
                 question = "SELECT id_products FROM type_products;";
                 (idproducts, product, records) = Question_read(question);
             }
             return idproducts;
         }
 
-        public (string, string, string, string) Question_read_String_products(List<string> records)
+        public (string, string, string, string) Read_String_products(List<string> records)
         {
             string question = "SELECT * FROM purchase_information ORDER BY idmain DESC LIMIT 4;";
             int idproducts = 0;
@@ -102,17 +102,17 @@ namespace Shop_products_Avalonia_V1
 
 
 
-        public void Question_write_idproduct_products(string products)
+        public void Write_idproduct(string products)
         {
             string question = $"INSERT INTO type_products (products) VALUES('{products}');";
             Question_Write(question);
         }
 
-        internal void Question_write_main(string products, string data, int price)
+        internal void Question_write_main(string products, string dataPurchases, int pricePurchases)
         {
             List<string> records = new List<string>(5);
-            int idproduct = Question_read_product_products(products, records);
-            string question = $"INSERT INTO purchase_information (data, products,price,category) VALUES('{data}', {idproduct} ,{price},'продукт');";
+            int idproduct = Read_product(products, records);
+            string question = $"INSERT INTO purchase_information (data, products,price,category) VALUES('{dataPurchases}', {idproduct} ,{pricePurchases},'продукт');";
             Question_Write(question);
         }
     }
