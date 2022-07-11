@@ -1,21 +1,21 @@
 using System;
 using System.Collections.Generic;
 using ReactiveUI;
+using Shop_products_Avalonia_V1.Models;
 
 namespace Shop_products_Avalonia_V1.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ReactiveObject
     {
-       
+
         public string _datePurchases = "";
         public int _pricePurchases = 0;
         public string _products = "Продукт";
-        Requests requests = new Requests();
+        ReadAndWriteRequests requests = new ReadAndWriteRequests();
         public string _record1 = "";
         public string _record2 = "";
         public string _record3 = "";
         public string _record4 = "";
-
 
         public void Record()
         {
@@ -26,7 +26,7 @@ namespace Shop_products_Avalonia_V1.ViewModels
             }
             (Record1, Record2, Record3, Record4) = requests.Read_String_products(records);
         }
-        
+
 
         public string DatePurchases
         {
@@ -63,5 +63,7 @@ namespace Shop_products_Avalonia_V1.ViewModels
             get => _record4;
             set => this.RaiseAndSetIfChanged(ref _record4, value);
         }
+
+        
     }
 }

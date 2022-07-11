@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Shop_products_Avalonia_V1.ViewModels
 {
-    public class ViewModelBase : ReactiveObject
+    public class ViewModelBase : MainWindowViewModel
     {
     }
 }
