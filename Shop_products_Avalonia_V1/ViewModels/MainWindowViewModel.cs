@@ -64,6 +64,28 @@ namespace Shop_products_Avalonia_V1.ViewModels
             set => this.RaiseAndSetIfChanged(ref _record4, value);
         }
 
-        
+        public ViewModels.MainWindowViewModel MainWindowViewModel1
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public ViewModels.MainWindowViewModel MainWindowViewModel11
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public ReadAndWriteRequests ReadAndWriteRequests
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

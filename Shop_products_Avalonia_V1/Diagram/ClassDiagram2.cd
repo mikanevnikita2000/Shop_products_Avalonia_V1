@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Shop_products_Avalonia_V1.Models.ConnectingToTheDatebase">
+    <Position X="14.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ConnectingToTheDatebase.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RequestProcessing" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Shop_products_Avalonia_V1.Models.ReadAndWriteRequests">
+    <Position X="8" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAABAAAAAAAAAAAAAAAAAEAAAIAQAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\ReadAndWriteRequests.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="RequestProcessing" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Shop_products_Avalonia_V1.Models.RequestProcessing">
+    <Position X="10.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAQAIAAAAAAAAAAAAAAAIAAAAAAAAAgAAA=</HashCode>
+      <FileName>Models\RequestProcessing.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MainWindowViewModel" />
+      <Property Name="ReadAndWriteRequests" />
+      <Property Name="ConnectingToTheDatebase" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Shop_products_Avalonia_V1.ViewModels.MainWindowViewModel">
+    <Position X="4.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAQAEIAAAAAAIAAAAAAAAAAAEAAeIAAAQAARAc=</HashCode>
+      <FileName>ViewModels\MainWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ReadAndWriteRequests" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Shop_products_Avalonia_V1.Views.MainWindow">
+    <Position X="1.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAE=</HashCode>
+      <FileName>Views\MainWindow.axaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MainWindowViewModel1" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

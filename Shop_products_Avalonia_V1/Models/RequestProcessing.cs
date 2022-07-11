@@ -8,6 +8,30 @@ namespace Shop_products_Avalonia_V1.Models
     {
         ConnectingToTheDatebase connectingToTheDatebase = new ConnectingToTheDatebase();
 
+        public ViewModels.MainWindowViewModel MainWindowViewModel
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public ReadAndWriteRequests ReadAndWriteRequests
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public ConnectingToTheDatebase ConnectingToTheDatebase
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public void Question_Write(string question)
         {
                 SqliteConnection connection =  connectingToTheDatebase.ConDB();

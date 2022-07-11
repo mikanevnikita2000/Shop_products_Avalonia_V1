@@ -16,5 +16,13 @@ namespace Shop_products_Avalonia_V1.Views
             {
             }
         }
+
+        public ViewModels.MainWindowViewModel MainWindowViewModel1
+        {
+            get => default;
+            set
+            {
+            }
+        }
     }
 }

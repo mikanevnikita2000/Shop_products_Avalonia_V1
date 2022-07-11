@@ -6,7 +6,15 @@ namespace Shop_products_Avalonia_V1.Models
 {
     public class ConnectingToTheDatebase
     {
-       public SqliteConnection ConDB()
+        public RequestProcessing RequestProcessing
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public SqliteConnection ConDB()
         {
             using (var connection = new SqliteConnection("Data Source = shop.db"))
             {

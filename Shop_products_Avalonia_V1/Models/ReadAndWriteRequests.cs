@@ -9,6 +9,15 @@ namespace Shop_products_Avalonia_V1.Models
     public class ReadAndWriteRequests
     {
         RequestProcessing requestProcessing = new RequestProcessing();
+
+        public RequestProcessing RequestProcessing
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public int Read_product(string products, List<string> records)
         {
             string question = $"SELECT * FROM type_products WHERE products ='{products}';";
