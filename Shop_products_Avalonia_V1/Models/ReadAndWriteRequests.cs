@@ -9,57 +9,42 @@ namespace Shop_products_Avalonia_V1.Models
     public class ReadAndWriteRequests
     {
         RequestProcessing requestProcessing = new RequestProcessing();
+        Purchase purchase = new Purchase();
 
-        public RequestProcessing RequestProcessing
+
+        public void Read_product()
         {
-            get => default;
-            set
+            purchase.Question = $"SELECT * FROM type_products WHERE products ='{purchase.Product}';";
+            
+           
+            if (purchase.Idproduct == 0)
             {
+                Write_idproduct();
+                purchase.Question = "SELECT id_products FROM type_products;";
+                requestProcessing.Question_read();
             }
+            requestProcessing.Question_read();
         }
 
-        public int Read_product(string products, List<string> records)
+        public void Read_String_products()
         {
-            string question = $"SELECT * FROM type_products WHERE products ='{products}';";
-            int idproducts = 0;
-            string product = "";
-            (idproducts, product, records) = requestProcessing.Question_read(question);
-            if (idproducts == 0)
-            {
-                Write_idproduct(products);
-                question = "SELECT id_products FROM type_products;";
-                (idproducts, product, records) = requestProcessing.Question_read(question);
-            }
-            return idproducts;
-        }
-
-        public (string, string, string, string) Read_String_products(List<string> records)
-        {
-            string question = "SELECT * FROM purchase_information ORDER BY idmain DESC LIMIT 4;";
-            int idproducts = 0;
-            string product = "";
-            (idproducts, product, records) = requestProcessing.Question_read(question);
-            string record1 = records[0];
-            string record2 = records[1];
-            string record3 = records[2];
-            string record4 = records[3];
-            return (record1, record2, record3, record4);
+            purchase.Question = "SELECT * FROM purchase_information ORDER BY idmain DESC LIMIT 4;";
+            requestProcessing.Question_read();
         }
 
 
 
-        public void Write_idproduct(string products)
+        public void Write_idproduct()
         {
-            string question = $"INSERT INTO type_products (products) VALUES('{products}');";
-            requestProcessing.Question_Write(question);
+            purchase.Question = $"INSERT INTO type_products (products) VALUES('{purchase.Product}');";
+            requestProcessing.Question_Write();
         }
 
-        internal void Question_write_main(string products, string dataPurchases, int pricePurchases)
+        internal void Question_write_main()
         {
-            List<string> records = new List<string>(4);
-            int idproduct = Read_product(products, records);
-            string question = $"INSERT INTO purchase_information (data, products,price,category) VALUES('{dataPurchases}', {idproduct} ,{pricePurchases},'продукт');";
-            requestProcessing.Question_Write(question);
+            Read_product();
+            purchase.Question = $"INSERT INTO purchase_information (data, products,price,category) VALUES('{purchase.DatePurchase}', {purchase.Idproduct} ,{purchase.PricePurchase},'продукт');";
+            requestProcessing.Question_Write();
         }
     }
 }

@@ -8,21 +8,5 @@ namespace Shop_products_Avalonia_V1.Views
         {
             InitializeComponent();
         }
-
-        public ViewModels.MainWindowViewModel MainWindowViewModel
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public ViewModels.MainWindowViewModel MainWindowViewModel1
-        {
-            get => default;
-            set
-            {
-            }
-        }
     }
 }

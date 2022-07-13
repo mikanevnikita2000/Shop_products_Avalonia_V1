@@ -1,94 +1,75 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
+using Shop_products_Avalonia_V1.Models;
 
 namespace Shop_products_Avalonia_V1.Models
 {
     public class RequestProcessing
     {
-        ConnectingToTheDatebase connectingToTheDatebase = new ConnectingToTheDatebase();
+       // ConnectingToTheDatebase connectingToTheDatebase = new ConnectingToTheDatebase();
+       // RequestProcessing requestProcessing = new RequestProcessing();
+        Purchase purchase = new Purchase();
 
-        public ViewModels.MainWindowViewModel MainWindowViewModel
+        public void Question_Write()
         {
-            get => default;
-            set
+            using (var connection = new SqliteConnection("Data Source = shop.db"))
             {
-            }
-        }
-
-        public ReadAndWriteRequests ReadAndWriteRequests
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public ConnectingToTheDatebase ConnectingToTheDatebase
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public void Question_Write(string question)
-        {
-                SqliteConnection connection =  connectingToTheDatebase.ConDB();
+                RequestProcessing requestProcessing = new RequestProcessing();
+                /*ConnectingToTheDatebase connectingToTheDatebase = new ConnectingToTheDatebase();
+                SqliteConnection connection = connectingToTheDatebase.ConDB();*/
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
                 command.Connection = connection;
 
-                command.CommandText = $"{question}";
+                command.CommandText = $"{purchase.Question}";
                 int number = command.ExecuteNonQuery();
+            }
         }
 
-        public (int, string, List<string>) Question_read(string question)
+        public void Question_read()
         {
-            int idproducts = 0;
-            string product = "";
-            List<string> records = new List<string>(4);
-            SqliteConnection connection = connectingToTheDatebase.ConDB();
-            connection.Open();
-
-                SqliteCommand command = new SqliteCommand(question, connection);
+            
+            /*ConnectingToTheDatebase connectingToTheDatebase = new ConnectingToTheDatebase();
+            SqliteConnection connection = connectingToTheDatebase.ConDB();*/
+           
+            using (var connection = new SqliteConnection("Data Source = shop.db"))
+            {
+                connection.Open();
+                SqliteCommand command = new SqliteCommand(purchase.Question, connection);
                 using (SqliteDataReader reader = command.ExecuteReader())
                 {
                     if (reader.HasRows)
                     {
-                        if (question == "SELECT id_products FROM type_products;")
+                        if (purchase.Question == "SELECT id_products FROM type_products;")
                         {
                             while (reader.Read())
                             {
-                                idproducts = Convert.ToInt32(reader["id_products"]);
+                                purchase.Idproduct = Convert.ToInt32(reader["id_products"]);
                             }
-                            return (idproducts, product, records);
                         }
-                        if (question == "SELECT * FROM purchase_information ORDER BY idmain DESC LIMIT 4;")
+                        if (purchase.Question == "SELECT * FROM purchase_information ORDER BY idmain DESC LIMIT 4;")
                         {
-                            List<string> record = new List<string>(5);
                             while (reader.Read())
                             {
-                                string dataPurchases = Convert.ToString(reader["data"]);
-                                int id_products = Convert.ToInt32(reader["products"]);
-                                int pricePurchases = Convert.ToInt32(reader["price"]);
-                                question = $"SELECT * FROM type_products WHERE id_products = {id_products};";
-                                (idproducts, product, record) = Question_read(question);
+                                purchase.DatePurchase = Convert.ToString(reader["data"]);
+                                purchase.Idproduct = Convert.ToInt32(reader["products"]);
+                                purchase.PricePurchase = Convert.ToInt32(reader["price"]);
+                                purchase.Question = $"SELECT * FROM type_products WHERE id_products = {purchase.Idproduct};";
+                                Question_read();
                                 string category = Convert.ToString(reader["category"]);
-                                records.Add($"{dataPurchases} : {product} : {pricePurchases} : {category}");
+                                purchase.Records.Add($"{purchase.DatePurchase} : {purchase.Product} : {purchase.PricePurchase} : {purchase.category}");
                             }
-                            return (idproducts, product, records);
                         }
 
                         while (reader.Read())
                         {
-                            product = Convert.ToString(reader["products"]);
-                            idproducts = Convert.ToInt32(reader["id_products"]);
+                            purchase.Product = Convert.ToString(reader["products"]);
+                            purchase.Idproduct = Convert.ToInt32(reader["id_products"]);
                         }
-                        return (idproducts, product, records);
                     }
                 }
-            return (idproducts, product, records);
+            }
         }
     }
 }

@@ -11,7 +11,8 @@ namespace Shop_products_Avalonia_V1.ViewModels
         public string _datePurchases = "";
         public int _pricePurchases = 0;
         public string _products = "Продукт";
-        ReadAndWriteRequests requests = new ReadAndWriteRequests();
+        Purchase purchase = new Purchase();
+        ReadAndWriteRequests readAndWriteRequests = new ReadAndWriteRequests();
         public string _record1 = "";
         public string _record2 = "";
         public string _record3 = "";
@@ -19,12 +20,19 @@ namespace Shop_products_Avalonia_V1.ViewModels
 
         public void Record()
         {
-            List<string> records = new List<string>(4);
+            Purchase purchase = new Purchase();
+            readAndWriteRequests.Read_String_products();
+            Record1 = purchase.records[0];
+            Record2 = purchase.records[1];
+            Record3 = purchase.records[2];
+            Record4 = purchase.records[3];
+
             if (DatePurchases != "")
             {
-                requests.Question_write_main(Products, DatePurchases, PricePurchases);
+                (purchase.Product, purchase.DatePurchase, purchase.PricePurchase) = (Products, DatePurchases, PricePurchases);
+                readAndWriteRequests.Question_write_main();
             }
-            (Record1, Record2, Record3, Record4) = requests.Read_String_products(records);
+            
         }
 
 
@@ -64,28 +72,6 @@ namespace Shop_products_Avalonia_V1.ViewModels
             set => this.RaiseAndSetIfChanged(ref _record4, value);
         }
 
-        public ViewModels.MainWindowViewModel MainWindowViewModel1
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public ViewModels.MainWindowViewModel MainWindowViewModel11
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public ReadAndWriteRequests ReadAndWriteRequests
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        
     }
 }
