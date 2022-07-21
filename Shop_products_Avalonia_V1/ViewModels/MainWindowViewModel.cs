@@ -12,7 +12,9 @@ namespace Shop_products_Avalonia_V1.ViewModels
         public int _pricePurchases = 0;
         public string _products = "Продукт";
         Purchase purchase = new Purchase();
-        ReadAndWriteRequests readAndWriteRequests = new ReadAndWriteRequests();
+        OutputOfRecords outputOfRecords = new OutputOfRecords();
+        Products products = new Products();
+        public List<string> records = new List<string>();
         public string _record1 = "";
         public string _record2 = "";
         public string _record3 = "";
@@ -20,17 +22,15 @@ namespace Shop_products_Avalonia_V1.ViewModels
 
         public void Record()
         {
-            Purchase purchase = new Purchase();
-            readAndWriteRequests.Read_String_products();
-            Record1 = purchase.records[0];
-            Record2 = purchase.records[1];
-            Record3 = purchase.records[2];
-            Record4 = purchase.records[3];
-
+            records = outputOfRecords.Output();
+            Record1 = records[0];
+            Record2 = records[1];
+            Record3 = records[2];
+            Record4 = records[3];
             if (DatePurchases != "")
             {
-                (purchase.Product, purchase.DatePurchase, purchase.PricePurchase) = (Products, DatePurchases, PricePurchases);
-                readAndWriteRequests.Question_write_main();
+                int idproducts = products.CheckingIdProduct(Products);
+                purchase.Question_write_main(idproducts, DatePurchases, PricePurchases);
             }
             
         }
@@ -71,7 +71,5 @@ namespace Shop_products_Avalonia_V1.ViewModels
             get => _record4;
             set => this.RaiseAndSetIfChanged(ref _record4, value);
         }
-
-        
     }
 }

@@ -1,61 +1,28 @@
-﻿using System.Collections.Generic;
-using ReactiveUI;
-using Shop_products_Avalonia_V1.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Shop_products_Avalonia_V1.Models 
-{ 
-    public class Purchase : ReactiveObject
+namespace Shop_products_Avalonia_V1.Models
+{
+    public class Purchase
     {
-        public string datePurchases ;
-        public int pricePurchases ;
-        public string products;
-        public int idproduct;
-        public List<string> records = new List<string>(4);
-        public string question ;
-        public string category ="Продукт";
+        RequestProcessing requestProcessing = new RequestProcessing();
+        private string datePurchases;
+        private int pricePurchases;
+        private int idproducts;
 
-        public string DatePurchase
+        public string DatePurchases { get { return datePurchases; } set { datePurchases = value; } }
+        public int PricePurchases { get { return pricePurchases; } set { pricePurchases = value; } }
+        public int Idproducts { get { return idproducts; } set { idproducts = value; } }
+
+        public void Question_write_main(int idproducts, string datePurchases, int pricePurchases)
         {
-            get => datePurchases;
-            set => this.RaiseAndSetIfChanged(ref datePurchases, value);
+            Idproducts = idproducts;
+            DatePurchases = datePurchases;
+            PricePurchases = pricePurchases;
+            requestProcessing.Question_Write($"INSERT INTO purchase_information (data, products,price,category) VALUES('{DatePurchases}', {Idproducts} ,{PricePurchases},'продукт');");
         }
-
-        public int PricePurchase
-        {
-            get => pricePurchases;
-            set => this.RaiseAndSetIfChanged(ref pricePurchases, value);
-        }
-
-        public string Product
-        {
-            get => products;
-            set => this.RaiseAndSetIfChanged(ref products, value);
-        }
-
-        public int Idproduct
-        {
-            get => idproduct;
-            set => this.RaiseAndSetIfChanged(ref idproduct, value);
-        }
-
-        public List<string> Records
-        {
-            get => records;
-            set => this.RaiseAndSetIfChanged(ref records, value);
-        }
-
-        public string Question
-        {
-            get => question;
-            set => this.RaiseAndSetIfChanged(ref question, value);
-        }
-
-       
-        /*public void OverwriteValues(string products,string datePurchases, int pricePurchases)
-        {
-            _datePurchases = datePurchases;
-            _pricePurchases = pricePurchases;
-            _products = products;
-        }*/
     }
 }
