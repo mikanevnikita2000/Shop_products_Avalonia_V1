@@ -22,17 +22,16 @@ namespace Shop_products_Avalonia_V1.ViewModels
 
         public void Record()
         {
-            records = outputOfRecords.Output();
-            Record1 = records[0];
-            Record2 = records[1];
-            Record3 = records[2];
-            Record4 = records[3];
             if (DatePurchases != "")
             {
                 int idproducts = products.CheckingIdProduct(Products);
                 purchase.Question_write_main(idproducts, DatePurchases, PricePurchases);
             }
-            
+            records = outputOfRecords.Output();
+            Record1 = records[0];
+            Record2 = records[1];
+            Record3 = records[2];
+            Record4 = records[3];
         }
 
 
