@@ -11,7 +11,7 @@ namespace Shop_products_Avalonia_V1.Models
         RequestProcessing requestProcessing = new RequestProcessing();
         private string datePurchases;
         private int pricePurchases;
-        private int idproducts;
+        private int idproducts ;
 
         public string DatePurchases { get { return datePurchases; } set { datePurchases = value; } }
         public int PricePurchases { get { return pricePurchases; } set { pricePurchases = value; } }
@@ -22,7 +22,8 @@ namespace Shop_products_Avalonia_V1.Models
             Idproducts = idproducts;
             DatePurchases = datePurchases;
             PricePurchases = pricePurchases;
-            requestProcessing.Question_Write($"INSERT INTO purchase_information (data, products,price,category) VALUES('{DatePurchases}', {Idproducts} ,{PricePurchases},'продукт');");
+            requestProcessing.Record_Write($"INSERT INTO purchase_information (data, products,price,category) VALUES('{DatePurchases}', {Idproducts} ,{PricePurchases},'продукт');");
+
         }
     }
 }

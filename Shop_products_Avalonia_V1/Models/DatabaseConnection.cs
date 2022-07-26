@@ -2,7 +2,7 @@
 
 namespace Shop_products_Avalonia_V1.Models
 {
-    public class ConnectingToTheDatebase
+    public class DatabaseConnection
     {
         public SqliteConnection ConDB()
         {

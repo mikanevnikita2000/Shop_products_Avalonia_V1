@@ -14,7 +14,7 @@ namespace Shop_products_Avalonia_V1.ViewModels
         Purchase purchase = new Purchase();
         OutputOfRecords outputOfRecords = new OutputOfRecords();
         Products products = new Products();
-        public List<string> records = new List<string>();
+        public List<object> ret = new List<object>();
         public string _record1 = "";
         public string _record2 = "";
         public string _record3 = "";
@@ -24,14 +24,15 @@ namespace Shop_products_Avalonia_V1.ViewModels
         {
             if (DatePurchases != "")
             {
-                int idproducts = products.CheckingIdProduct(Products);
+                int idproducts = products.Getproductid(Products);
                 purchase.Question_write_main(idproducts, DatePurchases, PricePurchases);
             }
-            records = outputOfRecords.Output();
-            Record1 = records[0];
-            Record2 = records[1];
-            Record3 = records[2];
-            Record4 = records[3];
+            ret = outputOfRecords.Output();
+            Record1 = Convert.ToString(ret[2]);
+            Record2 = Convert.ToString(ret[3]);
+            Record3 = Convert.ToString(ret[4]);
+            Record4 = Convert.ToString(ret[5]);
+            ret.Clear();
         }
 
 
