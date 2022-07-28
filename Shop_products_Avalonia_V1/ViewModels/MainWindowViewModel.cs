@@ -24,8 +24,8 @@ namespace Shop_products_Avalonia_V1.ViewModels
         {
             if (DatePurchases != "")
             {
-                int idproducts = products.Getproductid(Products);
-                purchase.Question_write_main(idproducts, DatePurchases, PricePurchases);
+                int idproducts = products.GetProductId(Products);
+                purchase.RequestWriteMain(idproducts, DatePurchases, PricePurchases);
             }
             ret = outputOfRecords.Output();
             Record1 = Convert.ToString(ret[2]);
