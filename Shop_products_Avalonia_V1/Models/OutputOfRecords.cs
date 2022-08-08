@@ -13,9 +13,11 @@ namespace Shop_products_Avalonia_V1.Models
 
         public List<object> Output()
         {
-            ret = requestProcessing.ReadFromDB($"SELECT * FROM purchase_information ORDER BY idmain DESC LIMIT {numberOfRecords};");
+            ret.Add($"SELECT * FROM purchase_information ORDER BY idmain DESC LIMIT {numberOfRecords};");
+            ret = requestProcessing.ReadFromDB(ret);
+            //ret.Remove(0);
             return ret;
         }
     }
 }
-//(idproduct, records) = requestProcessing.Question_Read($"SELECT * FROM purchase_information ORDER BY idmain DESC LIMIT {numberOfRecords};");
+

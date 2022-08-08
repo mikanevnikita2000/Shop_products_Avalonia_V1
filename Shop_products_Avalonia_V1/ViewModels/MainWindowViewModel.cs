@@ -28,10 +28,10 @@ namespace Shop_products_Avalonia_V1.ViewModels
                 purchase.RequestWriteMain(idproducts, DatePurchases, PricePurchases);
             }
             ret = outputOfRecords.Output();
-            Record1 = Convert.ToString(ret[2]);
-            Record2 = Convert.ToString(ret[3]);
-            Record3 = Convert.ToString(ret[4]);
-            Record4 = Convert.ToString(ret[5]);
+            Record1 = Convert.ToString(ret[1]);
+            Record2 = Convert.ToString(ret[2]);
+            Record3 = Convert.ToString(ret[3]);
+            Record4 = Convert.ToString(ret[4]);
             ret.Clear();
         }
 

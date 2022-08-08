@@ -9,42 +9,55 @@ namespace Shop_products_Avalonia_V1.Models
         RequestProcessing requestProcessing = new RequestProcessing();
         public int idproduct = 0;
         string product = "";
+        List<object> purchase = new List<object>();
+        List<object> product_name = new List<object>();
 
 
-        public List<object> IFChec(List<object> ret,string request, SqliteDataReader reader)
+        public List<object> IFChec(List<object> ret, SqliteDataReader reader)
         {
             OutputOfRecords outputOfRecords = new OutputOfRecords();
-
-            if (request == $"SELECT * FROM purchase_information ORDER BY idmain DESC LIMIT {outputOfRecords.numberOfRecords};")
+            if (ret.Count==0)
             {
-                int i = 2;
+                ret.Add(idproduct);
+                ret.Add(product);
+            }
+            
+
+            if (Convert.ToString(ret[0]) == $"SELECT * FROM purchase_information ORDER BY idmain DESC LIMIT {outputOfRecords.numberOfRecords};")
+            {
+               
                 while (reader.Read())
                 {
-                    string datePurchase = Convert.ToString(reader["data"]);
-                    idproduct = Convert.ToInt32(reader["products"]);
-                    int pricePurchase = Convert.ToInt32(reader["price"]);
-                    request = $"SELECT * FROM type_products WHERE id_products = {idproduct};";
-                    ret = requestProcessing.ReadFromDB(request);
-                    string category = Convert.ToString(reader["category"]);
-                    ret[i] = $"{datePurchase} : {ret[1]} : {pricePurchase} : {category}";
-                    i++;
+                    purchase.Add(Convert.ToString(reader["data"]));//0
+                    purchase.Add(Convert.ToInt32(reader["products"]));//1
+                    product_name.Add($"SELECT * FROM type_products WHERE id_products = {Convert.ToString(purchase[1])};");
+                    product_name.Add(purchase[1]);
+                    purchase.Add(Convert.ToInt32(reader["price"]));//1
+                    purchase.Add(Convert.ToString(reader["category"]));//2
+                    product_name = requestProcessing.ReadFromDB(product_name);
+                    purchase.Add(product_name[2]);//3
+                    ret.Add($"{purchase[0]} : {purchase[4]} : {purchase[2]} : {purchase[3]}");
+                    purchase.Clear();
+                    product_name.Clear();
+
+
                 }
             }
-            if (request == $"SELECT * FROM type_products WHERE id_products = {idproduct};")
+            if (Convert.ToString(ret[0]) == $"SELECT * FROM type_products WHERE id_products = {ret[1]};")
             {
                 while (reader.Read())
                 {
                     product = Convert.ToString(reader["products"]);
                 }
-                ret[1] = product;
+                ret.Add(product);
             }
             while (reader.Read())
             {
-                idproduct = Convert.ToInt32(reader["id_products"]);
-                ret[0] = idproduct;
+                ret.Add(Convert.ToInt32(reader["id_products"]));
             }
 
             return ret;
+            ret.Clear();
         }
     }
 }

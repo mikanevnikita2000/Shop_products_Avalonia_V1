@@ -22,31 +22,29 @@ namespace Shop_products_Avalonia_V1.Models
         }
 
 
-        List<object> ret = new List<object>();
        
 
-        public List<object> ReadFromDB(string request)
+        public List<object> ReadFromDB(List<object> ret)
         {
+            
             ReadingInformationFromTheDB readingInformationFromTheDB = new ReadingInformationFromTheDB();
-            int idproduct = 0;
             var connection = databaseConnection.ConDB();
-            string product = "";
             connection.Open();
-            ret.Add(idproduct);
-            ret.Add(product);
-            SqliteCommand command = new SqliteCommand(request, connection);
+            
+            SqliteCommand command = new SqliteCommand(Convert.ToString(ret[0]), connection);
             using (SqliteDataReader reader = command.ExecuteReader())
             {
                 if (reader.HasRows)
                 {
-                    ret= readingInformationFromTheDB.IFChec(ret,request, reader);
+                    ret= readingInformationFromTheDB.IFChec(ret, reader);
                     return ret;
+                    ret.Clear();
                 }
             }
             connection.Close();
-            idproduct = 0;
-            ret[0] = idproduct;
+            ret[0] = 0;
             return ret;
+            ret.Clear();
         }
 
         //ret[0] = idproduct,ret[1] = product,ret[2] = records
