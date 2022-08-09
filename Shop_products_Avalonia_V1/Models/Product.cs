@@ -18,15 +18,18 @@ namespace Shop_products_Avalonia_V1.Models
             Idproduct = 0;
             Product = product;
             ret.Add($"SELECT * FROM type_products WHERE products ='{Product}';");
+            ret.Add(0);
             ret = requestProcessing.ReadFromDB(ret);
-            Idproduct = Convert.ToInt32(ret[0]);
+            Idproduct = Convert.ToInt32(ret[2]);
+            ret.Clear();
             if (Idproduct ==0)
             {
                 requestProcessing.WriteToDB($"INSERT INTO type_products (products) VALUES('{Product}');");
                 ret.Clear();
                 ret.Add("SELECT id_products FROM type_products;");
+                ret.Add(0);
                 ret = requestProcessing.ReadFromDB(ret);
-                Idproduct = Convert.ToInt32(ret[0]);
+                Idproduct = Convert.ToInt32(ret[2]);
             }
             return Idproduct;
         }
