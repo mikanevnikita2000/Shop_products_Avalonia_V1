@@ -36,7 +36,7 @@ namespace Shop_products_Avalonia_V1.ViewModels
         }
 
 
-        public string DatePurchases
+        public string DatePurchases 
         {
             get => _datePurchases;
             set => this.RaiseAndSetIfChanged(ref _datePurchases, value);

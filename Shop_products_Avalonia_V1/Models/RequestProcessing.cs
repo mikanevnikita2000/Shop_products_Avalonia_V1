@@ -9,14 +9,14 @@ namespace Shop_products_Avalonia_V1.Models
         
         DatabaseConnection databaseConnection = new DatabaseConnection();
 
-        public void WriteToDB(string question)
+        public void WriteToDB(string request)
         {
             var connection = databaseConnection.ConDB();
             connection.Open();
             SqliteCommand command = new SqliteCommand();
             command.Connection = connection;
 
-            command.CommandText = $"{question}";
+            command.CommandText = $"{request}";
             int number = command.ExecuteNonQuery();
             connection.Close();
         }
@@ -38,17 +38,10 @@ namespace Shop_products_Avalonia_V1.Models
                 {
                     ret= readingInformationFromTheDB.IFChec(ret, reader);
                     return ret;
-                    ret.Clear();
                 }
             }
             connection.Close();
-            ret[0] = 0;
             return ret;
-            ret.Clear();
         }
-
-        //ret[0] = idproduct,ret[1] = product,ret[2] = records
-
-        
     }
 }
