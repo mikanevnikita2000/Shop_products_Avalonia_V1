@@ -14,20 +14,19 @@ namespace Shop_products_Avalonia_V1.Models
         {
             OutputOfRecords outputOfRecords = new OutputOfRecords();
 
-            if (Convert.ToString(ret[0]) == $"SELECT idmain, data, product, price, category  FROM purchase_information INNER JOIN  type_products ON type_products.id_products = purchase_information.products ORDER BY idmain DESC LIMIT {outputOfRecords.numberOfRecords};")
+            /*if (Convert.ToString(ret[0]) == $"SELECT idmain, data, product, price, category, id_products   FROM purchase_information INNER JOIN  type_products ON type_products.id_products = purchase_information.products ORDER BY idmain DESC LIMIT {outputOfRecords.numberOfRecords};")
             {
-               
                 while (reader.Read())
                 {
                     ret.Add($"{reader["data"]} : {reader["product"]} : {reader["price"]} : {reader["category"]}");
                     purchase.Clear();
                 }
-            }
+            }*/
             while (reader.Read())
             {
+                ret.Add($"{reader["data"]} : {reader["product"]} : {reader["price"]} : {reader["category"]}");
                 ret.Add(Convert.ToInt32(reader["id_products"]));
             }
-
             return ret;
         }
     }
