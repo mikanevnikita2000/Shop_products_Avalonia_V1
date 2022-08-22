@@ -9,20 +9,24 @@ namespace Shop_products_Avalonia_V1.Models
     public class Purchase
     {
         RequestProcessing requestProcessing = new RequestProcessing();
-        private string datePurchases;
+        private DateTime datePurchases;
         private int pricePurchases;
         private int idproducts ;
+        private string category;
 
-        public string DatePurchases { get { return datePurchases; } set { datePurchases = value; } }
+        public string Category { get { return category; } set { category = value; } }
+        public DateTime DatePurchases { get { return datePurchases; } set { datePurchases = value; } }
         public int PricePurchases { get { return pricePurchases; } set { pricePurchases = value; } }
         public int Idproducts { get { return idproducts; } set { idproducts = value; } }
 
-        public void RequestWriteMain(int idproducts, string datePurchases, int pricePurchases)
+        public void RequestWriteMain(int idproducts ,string category ,int pricePurchases)
         {
+            Category = category;
             Idproducts = idproducts;
-            DatePurchases = datePurchases;
+            DatePurchases = DateTime.Now;
+            DatePurchases.ToShortDateString();
             PricePurchases = pricePurchases;
-            requestProcessing.WriteToDB($"INSERT INTO purchase_information (data, products,price,category) VALUES('{DatePurchases}', {Idproducts} ,{PricePurchases},'продукт');");
+            requestProcessing.WriteToDB($"INSERT INTO purchase_information (data, products,price,category) VALUES('{DatePurchases}', {Idproducts} ,{PricePurchases},'{Category}');");
 
         }
     }

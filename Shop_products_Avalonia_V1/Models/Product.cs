@@ -17,27 +17,22 @@ namespace Shop_products_Avalonia_V1.Models
         {
             Idproduct = 0;
             Product = product;
-            ret.Add($"SELECT * FROM type_products WHERE products ='{Product}';");
-            ret.Add(0);
+            ret.Add($"SELECT * FROM type_products WHERE product ='{Product}';");
+            
             ret = requestProcessing.ReadFromDB(ret);
-            if (ret.Count==3)
-            {
-                Idproduct = Convert.ToInt32(ret[1]);
-            }
-            else
-            {
-                Idproduct = Convert.ToInt32(ret[2]);
-            }
-            ret.Clear();
-            if (Idproduct ==0)
+            
+            if (ret.Count == 1)
             {
                 requestProcessing.WriteToDB($"INSERT INTO type_products (product) VALUES('{Product}');");
                 ret.Clear();
                 ret.Add("SELECT id_products FROM type_products;");
-                ret.Add(0);
                 ret = requestProcessing.ReadFromDB(ret);
-                Idproduct = Convert.ToInt32(ret[2]);
+                Idproduct = Convert.ToInt32(ret[1]);
+                ret.Clear();
+                return Idproduct;
             }
+            Idproduct = Convert.ToInt32(ret[1]);
+            ret.Clear();
             return Idproduct;
         }
     }

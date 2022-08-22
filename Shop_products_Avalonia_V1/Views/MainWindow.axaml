@@ -27,8 +27,8 @@
 				<DockPanel LastChildFill="True">
 					<Grid ColumnDefinitions="1*,1*" RowDefinitions="1*,1*,1*,1*,1*,1*,1*"  Margin="4">
 						<TextBox Text="{Binding Products}" Width="320" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-						<TextBox Text="{Binding DatePurchases}" Width="180" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-						<TextBox Text="{Binding PricePurchases}" Width="180" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						<TextBox Text="{Binding PricePurchases}" Width="180" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						<TextBox Text="{Binding Category}" Width="180" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 						<Button Content="Записать" Width="320"  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding Record}"/>
 						<TextBlock Text="{Binding Record1}" Grid.Row="3" FontSize="14" Margin="20" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 						<TextBlock Text="{Binding Record2}" Grid.Row="4" FontSize="14" Margin="20" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>

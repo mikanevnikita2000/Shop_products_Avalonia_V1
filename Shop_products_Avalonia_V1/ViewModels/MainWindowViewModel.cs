@@ -8,9 +8,10 @@ namespace Shop_products_Avalonia_V1.ViewModels
     public class MainWindowViewModel : ReactiveObject
     {
 
-        public string _datePurchases = "";
+        //public DateTime _datePurchases = ;
         public int _pricePurchases = 0;
         public string _products = "Продукт";
+        public string _category = "Категория";
         Purchase purchase = new Purchase();
         OutputOfRecords outputOfRecords = new OutputOfRecords();
         Products products = new Products();
@@ -22,24 +23,25 @@ namespace Shop_products_Avalonia_V1.ViewModels
 
         public void Record()
         {
-            if (DatePurchases != "")
+            if (Products != "Продукт")// DatePurchases != null
             {
                 int idproducts = products.GetProductId(Products);
-                purchase.RequestWriteMain(idproducts, DatePurchases, PricePurchases);
+                purchase.RequestWriteMain(idproducts, Category, PricePurchases);
+                ret = outputOfRecords.Output();
+                Record1 = Convert.ToString(ret[1]);
+                Record2 = Convert.ToString(ret[2]);
+                Record3 = Convert.ToString(ret[3]);
+                Record4 = Convert.ToString(ret[4]);
+                ret.Clear();
             }
-            ret = outputOfRecords.Output();
-            Record1 = Convert.ToString(ret[1]);
-            Record2 = Convert.ToString(ret[2]);
-            Record3 = Convert.ToString(ret[3]);
-            Record4 = Convert.ToString(ret[4]);
-            ret.Clear();
+            
         }
 
 
-        public string DatePurchases 
+        public string Category
         {
-            get => _datePurchases;
-            set => this.RaiseAndSetIfChanged(ref _datePurchases, value);
+            get => _category;
+            set => this.RaiseAndSetIfChanged(ref _category, value);
         }
         public int PricePurchases
         {
