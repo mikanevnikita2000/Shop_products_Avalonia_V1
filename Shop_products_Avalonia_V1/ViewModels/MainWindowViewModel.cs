@@ -2,24 +2,27 @@ using System;
 using System.Collections.Generic;
 using ReactiveUI;
 using Shop_products_Avalonia_V1.Models;
+using Shop_products_Avalonia_V1.Views;
 
 namespace Shop_products_Avalonia_V1.ViewModels
 {
     public class MainWindowViewModel : ReactiveObject
     {
 
-        //public DateTime _datePurchases = ;
+        public string _datePurchases = "Дата";
         public int _pricePurchases = 0;
         public string _products = "Продукт";
         public string _category = "Категория";
         Purchase purchase = new Purchase();
         OutputOfRecords outputOfRecords = new OutputOfRecords();
         Products products = new Products();
+        DeletePurchaes deletePurchaes = new DeletePurchaes();
         public List<object> ret = new List<object>();
         public string _record1 = "";
         public string _record2 = "";
         public string _record3 = "";
         public string _record4 = "";
+        //public string _numberRecordDelete = "";
 
         public void Record()
         {
@@ -34,10 +37,26 @@ namespace Shop_products_Avalonia_V1.ViewModels
                 Record4 = Convert.ToString(ret[4]);
                 ret.Clear();
             }
-            
+
+        }
+        public void DeleteWindows()
+        {
+            Products = "Продукт";
+            DatePurchases = "Дата";
+            DeleteWindow deleteWindow = new ();
+            deleteWindow.Show();
+        }
+        public void DeletePurchaes()
+        {
+            deletePurchaes.Delete(Products, DatePurchases);
         }
 
 
+        public string DatePurchases
+        {
+            get => _datePurchases;
+            set => this.RaiseAndSetIfChanged(ref _datePurchases, value);
+        }
         public string Category
         {
             get => _category;
