@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Avalonia.Controls;
 using ReactiveUI;
 using Shop_products_Avalonia_V1.Models;
 using Shop_products_Avalonia_V1.Views;
+
 
 namespace Shop_products_Avalonia_V1.ViewModels
 {
@@ -39,12 +41,22 @@ namespace Shop_products_Avalonia_V1.ViewModels
             }
 
         }
+
+        public void Date()
+        {
+            DateTime dateTime = DateTime.Now;
+            Date date = new();
+            date.Show();
+            var cal1 = this.FindControl<Calendar>("DisplayDatesCalendar");
+            dateTime = Convert.ToDateTime(cal1.DisplayDate);
+        }
         public void DeleteWindows()
         {
-            Products = "Продукт";
-            DatePurchases = "Дата";
+            
             DeleteWindow deleteWindow = new ();
             deleteWindow.Show();
+            Products = "Продукт";
+            DatePurchases = "Дата";
         }
         public void DeletePurchaes()
         {
@@ -52,6 +64,7 @@ namespace Shop_products_Avalonia_V1.ViewModels
         }
 
 
+        //public DateTime DisplayDate { get; set; }
         public string DatePurchases
         {
             get => _datePurchases;

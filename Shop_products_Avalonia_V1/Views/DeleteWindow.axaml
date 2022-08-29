@@ -6,7 +6,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="550"
         x:Class="Shop_products_Avalonia_V1.Views.DeleteWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Shop_products_Avalonia_V1"
+        Title="Удаление записи"
 		Width="200" Height="250"
 		BorderBrush="Black"
 		BorderThickness="2"
@@ -28,6 +28,7 @@
       <ColumnDefinition/>
       <ColumnDefinition/>
     </Grid.ColumnDefinitions>
+    
     
     <TextBlock Text="Впишите продукт и дату" Grid.Row="0" Grid.ColumnSpan="2"  FontSize="14" Margin="20"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
     <TextBox Text="{Binding Products}" Width="40" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
