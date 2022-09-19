@@ -17,3 +17,4 @@ namespace Shop_products_Avalonia_V1.Views
         }
     }
 }
+  

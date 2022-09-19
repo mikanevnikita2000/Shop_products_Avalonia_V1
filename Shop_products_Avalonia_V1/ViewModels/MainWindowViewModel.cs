@@ -42,14 +42,14 @@ namespace Shop_products_Avalonia_V1.ViewModels
 
         }
 
-        public void Date()
+        /*public void Date()
         {
             DateTime dateTime = DateTime.Now;
             Date date = new();
             date.Show();
-            var cal1 = this.FindControl<Calendar>("DisplayDatesCalendar");
-            dateTime = Convert.ToDateTime(cal1.DisplayDate);
-        }
+           *//* var cal1 = this.<Calendar>("DisplayDatesCalendar");
+            dateTime = Convert.ToDateTime(cal1.DisplayDate);*//*
+        }*/
         public void DeleteWindows()
         {
             

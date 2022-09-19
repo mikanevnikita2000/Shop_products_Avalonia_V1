@@ -9,12 +9,15 @@ namespace Shop_products_Avalonia_V1.Models
     public class DeletePurchaes
     {
         RequestProcessing requestProcessing = new RequestProcessing();
-        List<object> ret = new List<object>();
+        
+        
         public void Delete(string product, string datePurchaes)
         {
-            ret.Add($"SELECT id_products FROM type_products;");
-            requestProcessing.ReadFromDB(ret);
-            string request = $"DELETE FROM books WHERE data='{datePurchaes}' and products='{ret[1]}'";
+            List<object> ret = new List<object>();
+            ret.Add($"SELECT id_products FROM type_products WHERE product ='{product}';");
+            ret = requestProcessing.ReadFromDB(ret);
+            DateTime dateTime = Convert.ToDateTime(datePurchaes);
+            string request = $"DELETE FROM purchase_information WHERE data='{datePurchaes}' and products='{ret[1]}';";
             requestProcessing.WriteToDB(request);
         }
     }
